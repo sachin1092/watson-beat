@@ -208,7 +208,7 @@ def CreateMidiEventsForStrings ( layer, uniqCPId, secId, phId, repCount, numChor
         
         ev = { 'event': event,  'startGlobalClk': clk, 'velocity': velocity, 'pitch': midiStr }
 
-        if ( 0 and layer == 'leftPianoBass' ) : 
+        if ( int(os.environ.get('DEBUG', 0)) and layer == 'leftPianoBass' ) : 
             print ( layer, phId, secId, ev ) 
 
         midiEvents.append ( ev ) 
@@ -283,7 +283,7 @@ def CreateMidiEventsForPercussions ( layer, density, uniqCPId, secId, phId, repC
         
             ev = { 'event': event,  'startGlobalClk': clk, 'velocity': velocity, 'pitch': midiStr }
 
-            if ( 0 and layer == 'drumsKick' ) : 
+            if ( int(os.environ.get('DEBUG', 0)) and layer == 'drumsKick' ) : 
                 print ( layer, phId, secId, ev ) 
 
             midiEvents.append ( ev ) 
@@ -342,7 +342,7 @@ def CreateMidiEventsForPercussionFills ( layer, uniqCPId, secId, phId, repCount,
         
             ev = { 'event': event,  'startGlobalClk': clk, 'velocity': velocity, 'pitch': midiStr }
 
-            if ( 0 and layer == 'drumsKick' ) : 
+            if ( int(os.environ.get('DEBUG', 0)) and layer == 'drumsKick' ) : 
                 print ( layer, phId, secId, ev ) 
 
             midiEvents.append ( ev ) 
@@ -359,7 +359,7 @@ def CreateMidiEventsForPercussionFills ( layer, uniqCPId, secId, phId, repCount,
 
 def CreateMidiFileForBass ( mvNum, secId, layer, midiEvents, outdir ) : 
 
-    if ( 0 ) : 
+    if ( int(os.environ.get('DEBUG', 0)) ) : 
         print ( "Before Sorting Layer", layer, "MvNum: ", mvNum, "Section Id: ", secId ) 
         for ev in midiEvents : 
             print ( ev ) 
@@ -369,7 +369,7 @@ def CreateMidiFileForBass ( mvNum, secId, layer, midiEvents, outdir ) :
     # sort midi events based on global clock 
     sortedMidiEvents = sorted ( midiEvents, key= lambda x: x['startGlobalClk'] ) 
 
-    if ( 0 ) : 
+    if ( int(os.environ.get('DEBUG', 0)) ) : 
         print ( "After Sorting Layer", layer, "MvNum: ", mvNum, "Section Id: ", secId ) 
         for ev in sortedMidiEvents : 
             print ( ev ) 
@@ -394,7 +394,7 @@ def CreateMidiFileForBass ( mvNum, secId, layer, midiEvents, outdir ) :
             globalClk = sortedMidiEvents[evNum+1]['startGlobalClk'] - sortedMidiEvents[evNum]['startGlobalClk'] 
         
             
-    if ( 0 ) : 
+    if ( int(os.environ.get('DEBUG', 0)) ) : 
         print ( "After local midi clk" ) 
         for ev in sortedMidiEvents : 
             print ( ev ) 

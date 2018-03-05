@@ -59,14 +59,14 @@ class Strings2 () :
         if ( prnFlag ) : 
             self.PrintClassInfo() 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for key in chordDict : 
                 print ( key , chordDict[key]) 
             print()
 
         self.consolidateChords ()
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for key in self.consolidatedChords : 
                 print ( key, self.consolidatedChords[key] ) 
             print()
@@ -109,7 +109,7 @@ class Strings2 () :
 
             if ( chId != 0 ) :                 
                 chordProgressionChoice = random.choice ( [ 'leadingVoice',  'leadingVoice', 'any',  'leadingVoice', 'any', 'planing', 'leadingVoice'] ) 
-                if ( 0 ) : 
+                if ( int(os.environ.get('DEBUG', 0)) ) : 
                     print ( "chordProgressionChoice: ", chordProgressionChoice )             
             
             else : 
@@ -120,7 +120,7 @@ class Strings2 () :
 
 
 
-            if ( 0 ) :
+            if ( int(os.environ.get('DEBUG', 0)) ) :
                 print ( "Chord Id: ", chId, "chordProgression choice: ", chordProgressionChoice ) 
 
             if ( chId == 0 or chordProgressionChoice == 'any' ) : 
@@ -153,7 +153,7 @@ class Strings2 () :
                                             break 
 
                                 noteIndex.append (indexId ) 
-                        if ( 0 and (strClass == 'arpStrings' or strClass == 'rightPiano') ) : 
+                        if ( int(os.environ.get('DEBUG', 0)) and (strClass == 'arpStrings' or strClass == 'rightPiano') ) : 
                             print ( "ChordId: ", chId, "Desc: ", self.StringClass[strClass][instId]['desc'], "InstId: ", instId, "noteIndex: ", noteIndex, "numNotes: ", self.StringClass[strClass][instId]['numNotes'] ) 
                         self.consolidatedChords[chId][strClass][instId] =  { 'desc': self.StringClass[strClass][instId]['desc'], 'noteIndex': noteIndex, 'items': [] } 
                         pitches = [] 
@@ -204,7 +204,7 @@ class Strings2 () :
 
                             tryFor100Times = 0 
                             while ( True ) : 
-                                if ( 0 ) :
+                                if ( int(os.environ.get('DEBUG', 0)) ) :
                                     print ( "ChordId: ", chId, "NoteId", noteId, "chordList: ", chordList, "str class: ", strClass, "Note Index list: ", self.consolidatedChords[chId][strClass][instId]['noteIndex'], "prev noteIndex list: ",  self.consolidatedChords[chId-1][strClass][instId]['noteIndex'] ) 
 
 
@@ -279,7 +279,7 @@ class Strings2 () :
                             self.consolidatedChords[chId][strClass][instId]['items'].append ( { 'note': note, 'pitch': pitch, 'octave': octave, 'consolidateFlag': False,  'velocity': random.randint(50,80) } )                             
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for chId in self.consolidatedChords : 
                 chord = self.consolidatedChords[chId]['chord'] 
                 print ( "Chord Id : ", chId, "Chord: " , chord, self.consolidatedChords[chId]['cpChoice'], "Duration:",  self.consolidatedChords[chId]['duration'], "Clk:",  self.consolidatedChords[chId]['Clk'] ) 
@@ -346,7 +346,7 @@ class Strings2 () :
 
                 self.StringEvents[strClass][instId] = sorted ( self.StringEvents[strClass][instId], key = lambda x: x['Clk'] ) 
                 
-                if ( 0 ) : 
+                if ( int(os.environ.get('DEBUG', 0)) ) : 
                     print() 
                     print ( "String Class: ", strClass, "InstId: ", instId, "Desc: ", self.StringEvents[strClass][instId][0]['desc'] ) 
                     for ev in self.StringEvents[strClass][instId] : 
@@ -359,7 +359,7 @@ class Strings2 () :
                     glbClk = self.StringEvents[strClass][instId][ev]['Clk']
 
 
-                if ( 0 and ( strClass == 'arpStrings'  or strClass == 'rightPiano' ) ) : 
+                if ( int(os.environ.get('DEBUG', 0)) and ( strClass == 'arpStrings'  or strClass == 'rightPiano' ) ) : 
                     print() 
                     print ( "String Class: ", strClass, "InstId: ", instId, "Desc: ", self.StringEvents[strClass][instId][0]['desc'] ) 
                     for ev in self.StringEvents[strClass][instId] : 

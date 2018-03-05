@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 import collections
+import os
 
 class Arranging : 
 
@@ -121,7 +122,7 @@ class Arranging :
 
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Layers Based on Density" ) 
             for density in self.DefaultLayersBasedOnDensity : 
                 print ( "\tDensity: ", density ) 
@@ -129,7 +130,7 @@ class Arranging :
                     print  ( "\t\tLayer: ", lyr ) 
                 print() 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Layers Based on Range" ) 
             for range in self.DefaultLayersBasedOnRange : 
                 print ( "\tRange: ", range ) 
@@ -137,7 +138,7 @@ class Arranging :
                     print  ( "\t\tLayer: ", lyr ) 
                 print() 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Layers Based on Density And Range" ) 
             for density in self.DefaultLayersBasedOnDensityAndRange : 
                 print ( "\tDensity: ", density ) 
@@ -148,7 +149,7 @@ class Arranging :
                     print() 
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Layers Based on Range And Density" ) 
             for range in self.DefaultLayersBasedOnRangeAndDensity : 
                 print ( "\tRange: ", range ) 

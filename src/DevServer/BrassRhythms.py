@@ -32,7 +32,7 @@ class BrassRhythm ( ) :
         #self.features        = [ i for i in range(self.numFeatures) ]
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for rhy in self.rhythm : 
                 print ( self.rhythm[rhy] ) 
 
@@ -48,7 +48,7 @@ class BrassRhythm ( ) :
         numMeasures     = self.duration // Constants.TSEs[self.tse]['oneMeasure'] 
         halfMeasureBeat = ( numBeats // 2 ) + 1 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "self.duration: :", self.duration, "Num Beats: ", numBeats, "Num Measures: ", numMeasures, "halfMeasurebeat: ", halfMeasureBeat, self.rhythm ) 
 
         if ( numMeasures == 0 ) : 
@@ -69,7 +69,7 @@ class BrassRhythm ( ) :
             else : 
                 muteHalfMeasure = False
             
-            if ( 0 ) : #and mNum > 0 and muteMeasure ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : #and mNum > 0 and muteMeasure ) : 
                 chosenData = {} 
                 chosenData = {  'notes':  ['C'] , 'chord': self.homeChord, 'scale': self.homeScale, 'duration': [Constants.TSEs[self.tse]['oneMeasure']], 'octaveUp': False, 'velocity': 0 } 
                 chosenItems.append ( chosenData )
@@ -82,7 +82,7 @@ class BrassRhythm ( ) :
                     break 
 
                 chosenData     = {} 
-                if (  0 ) : # and beat >= halfMeasureBeat and muteHalfMeasure ) : 
+                if ( int(os.environ.get('DEBUG', 0)) ) : # and beat >= halfMeasureBeat and muteHalfMeasure ) : 
                     chosenDuration = (  numBeats+1 - beat )  *  Constants.NoteDurationDict['sixteenth']
                     chosenData = { 'action': 'PLAY_HOME_NOTE', 'notes':  ['C'] , 'chord': self.homeChord, 'scale': self.homeScale, 'duration': [chosenDuration], 'octaveUp': False, 'velocity': 0 } 
                     chosenItems.append ( chosenData )
@@ -153,7 +153,7 @@ class BrassRhythm ( ) :
 
                     
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
 
             for i in range(len(chosenItems)) : 
                 print ( chosenItems[i]) 

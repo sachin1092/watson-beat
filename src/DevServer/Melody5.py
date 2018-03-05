@@ -311,11 +311,11 @@ class Melody5 ( ) :
                 prevPitch = chosenData['pitches'][-1]
                 currentOctave = chosenData['pitches'][-1]//12
 
-                if ( 0 ) :
+                if ( int(os.environ.get('DEBUG', 0)) ) :
                     print ( "Used Ticks: ", usedTicks, "remaining duration: ", remainingTicks, "Total Ticks: ", self.duration )
             # end while ( remainingTicks < self.duration ) 
             #break 
-            if ( 0 ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : 
                 print ( "End of iter: ", trIter, "chosenItems: ", chosenItems ) 
             if ( 1 ) : 
                 #print ( "Iteration Number: " , trIter,  self.env.durationChordTonesForChordLength , self.env.durationNonChordTonesForChordLength,  self.env.homeGestureMovementDistance )
@@ -346,7 +346,7 @@ class Melody5 ( ) :
             randExploitation = 0.95 
         else :
             randExploitation = 0.99 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "trIter: ", trIter, "Num Iterations: ", trainingIterations, "Ratio: ", ratioIter , "Rand Exploitation: ", randExploitation ) 
         return randExploitation
 

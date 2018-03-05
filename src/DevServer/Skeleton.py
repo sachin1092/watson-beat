@@ -230,7 +230,7 @@ class Template :
                     cnt += 1
                     
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for mvNum in self.movements : 
                 print() 
                 print ( "Movement Id: ", mvNum ) 
@@ -246,7 +246,7 @@ class Template :
         #Initialize mood and sections
         for mvNum in self.movements : 
             self.movements[mvNum]['SectionsObj'] = Mood ( self.movements[mvNum], self.tempo ) 
-            if ( 0 ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : 
                 sec = self.movements[mvNum]['SectionsObj'].mood
                 print ( "Arrangement for Movement" ) 
                 for secId in sec.sections : 
@@ -481,7 +481,7 @@ class Template :
                 for layer in self.uniqLayers[mvNum][uniqMelId] : 
                     print ( "\t\tLayer: ", layer )               
                     if ( layer in ['melP', 'piano1', 'rhythmChords', 'strings1', 'strings2'] ) :                         
-                        if ( 0 ) : 
+                        if ( int(os.environ.get('DEBUG', 0)) ) : 
                             for chordSplit in self.uniqLayers[mvNum][uniqMelId][layer] : 
                                 for item in chordSplit : 
                                     print ( "\t\t\tItem: Scale: ", item['scale'], "Chord: ", item['chord'] ) 
@@ -494,7 +494,7 @@ class Template :
 
                     elif (  layer.startswith ( 'drums' ) ) : 
 
-                        if ( 0 ) : 
+                        if ( int(os.environ.get('DEBUG', 0)) ) : 
                             for mnum in self.uniqLayers[mvNum][uniqMelId][layer] : 
                                 for item in self.uniqLayers[mvNum][uniqMelId][layer][mnum] : 
                                     print ( "\t\t\tMeasure: ", mnum, "Item: ", item ) 

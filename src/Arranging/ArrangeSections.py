@@ -3,6 +3,7 @@ from __future__ import print_function
 import random
 import collections
 import CreateMidiEventsForBass
+import os
 
 
 class ArrangeSections : 
@@ -64,7 +65,7 @@ class ArrangeSections :
                     #    continue
 
 
-                    if ( 0 ) : 
+                    if ( int(os.environ.get('DEBUG', 0)) ) : 
                         print ( "Layer: ", layer ) 
 
                     if ( layer not in self.midiEventsForSectionLayers[secId] and layer != 'mel5' ) : 
@@ -82,7 +83,7 @@ class ArrangeSections :
                     if ( layer == 'bass1' or layer == 'bass2' or layer == 'bass3' ) : 
                         self.midiEventsForSectionLayers[secId][layer] += CreateMidiEventsForBass.CreateMidiEvents ( layer, uniqCPId, secId, chId, sectionsObj.sections[secId]['chords'][chId], self.movement['layers'][uniqCPId][layer][0][actualChordId] ) 
                          
-                    if ( 0 and layer == 'bass3' ) : 
+                    if ( int(os.environ.get('DEBUG', 0)) and layer == 'bass3' ) : 
                         print ( self.midiEventsForSectionLayers[secId][layer], self.movement['layers'][uniqCPId][layer], uniqCPId, secId, chId, sectionsObj.sections[secId]['chords'][chId], )
 
                     if ( layer == 'mel5' ) : 
@@ -134,7 +135,7 @@ class ArrangeSections :
                     if ( not ( layer.endswith('Strings') or layer == 'leftPianoBass' or layer.startswith('rightPiano')  or layer.startswith('drums') )  ) :  # these are not phrase level layers. deal with them above
                         continue
 
-                    if ( 0 ) : 
+                    if ( int(os.environ.get('DEBUG', 0)) ) : 
                         print ( layer, "SecId: ", secId, "phId: ", phId ) 
                 
                     if ( layer.startswith( 'loStrings' ) ) : 
@@ -202,7 +203,7 @@ class ArrangeSections :
                 #if ( layer == 'bass1' or layer == 'bass2'  or layer == 'mel5' or layer == 'piano1' or layer == 'rhythmChords' ) : 
                 #    CreateMidiEventsForBass.CreateMidiFileForBass ( self.id, secId, layer, self.midiEventsForSectionLayers[secId][layer] ) 
                     
-                if ( 0 and layer.startswith('mel5High') ) : 
+                if ( int(os.environ.get('DEBUG', 0)) and layer.startswith('mel5High') ) : 
                     print ( "Section: ", secId, "Layer: ", layer ) 
                     for ev in self.midiEventsForSectionLayers[secId][layer] : 
                         print ( ev ) 

@@ -7,7 +7,7 @@ import DrumConstants
 from Skeleton import Constants
 
 def run ( BeatInfo, tse, rhythmSpeed, pl ) : 
-    if ( 0 ) : 
+    if ( int(os.environ.get('DEBUG', 0)) ) : 
         print ( "Cymbalswell Drums" ) 
 
     numBeats = Constants.TSEs[tse]['num16thBeats'] 
@@ -57,7 +57,7 @@ def run ( BeatInfo, tse, rhythmSpeed, pl ) :
 
 
 
-    if ( 0 ) : 
+    if ( int(os.environ.get('DEBUG', 0)) ) : 
         print ( "Cymbalswell Drum" ) 
         for patternNum in range(numPatterns) : 
             print ( "\tPattern Num: ", patternNum ) 

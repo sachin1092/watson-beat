@@ -266,14 +266,14 @@ class Melody () :
                 prevPitch = chosenData['pitches'][-1]
                 currentOctave = chosenData['pitches'][-1]//12
 
-                if ( 0 ) :
+                if ( int(os.environ.get('DEBUG', 0)) ) :
                     print ( "Used Ticks: ", usedTicks, "remaining duration: ", remainingTicks, "Total Ticks: ", self.duration )
             # end while ( remainingTicks < self.duration ) 
             #break 
-            if ( 0 ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : 
                 print ( "End of iter: ", trIter, "chosenItems: ", chosenItems ) 
         # end for trIter in range( trainingIterations)
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print() 
             for item in chosenItems :
                 print ( "item: ", item ) 
@@ -329,7 +329,7 @@ class Melody () :
 
             filledGapItems.append ( newItem ) 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print() 
             for item in filledGapItems :
                 print ( item ) 
@@ -440,7 +440,7 @@ class Melody () :
             randExploitation = 0.80 
         else :
             randExploitation = 0.90 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "trIter: ", trIter, "Num Iterations: ", trainingIterations, "Ratio: ", ratioIter , "Rand Exploitation: ", randExploitation ) 
         return randExploitation
 

@@ -149,7 +149,7 @@ class LayerFills :
                 prevPitch = self.measures['main'][mnum][beatnum]['pitch']
                     
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for mnum in alternativeMeasures : 
                 for beatnum in alternativeMeasures[mnum] : 
                     print ( "Measure: ", mnum, "BeatNum: ", beatnum, alternativeMeasures[mnum][beatnum] ) 

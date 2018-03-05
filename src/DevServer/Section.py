@@ -72,7 +72,7 @@ class Section:
         self.layers['mel5'] = self.initializeAndRunDJWatsonMelody () 
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for lyr in self.layers : 
                 print ( "Layer: ", lyr ) 
                 for num in range(len(self.layers[lyr] ) ) : 
@@ -113,7 +113,7 @@ class Section:
             print() 
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print  ( "Ids: ", ids, "Chords: ", chords, "Scales: ", scales, "Chord Durations: ", durations ) 
 
         
@@ -140,7 +140,7 @@ class Section:
         itemsForOctaveBalancing = [] 
 
         for chId in midiTrainingData.melody :
-            if ( 0 ) :
+            if ( int(os.environ.get('DEBUG', 0)) ) :
                 print ( "Chord: ", chId ) 
 
             if ( chords[chId] not in MusicTheory.KeyDict ) :
@@ -167,7 +167,7 @@ class Section:
             self.mel5Data[phraseNum][chId] = [] 
 
 
-            if ( 0 ) :
+            if ( int(os.environ.get('DEBUG', 0)) ) :
                 print ( "chord Id: ", chId ) 
                 print ( "Old Pitch : ", tr_pitch ) 
                 print ( "New Pitch : ", new_pitch ) 
@@ -178,7 +178,7 @@ class Section:
                 
             for item in range(len(new_pitch)) : 
 
-                if ( 0 ) : 
+                if ( int(os.environ.get('DEBUG', 0)) ) : 
                     print ( "Item: ", item, new_pitch[item], tr_startTime[item] , tr_endTime[item]  ) 
 
                 note = MusicTheory.pitchToNotes[new_pitch[item]%12]
@@ -193,7 +193,7 @@ class Section:
                     #print ( "I am here 1" )
                 
                 elif ( item+1 < len(new_pitch) and tr_endTime[item] > tr_startTime[item+1] ) :
-                    if ( 0 ) :
+                    if ( int(os.environ.get('DEBUG', 0)) ) :
                         print ( "Do Nothing" ) 
 
                 elif ( tr_endTime[item] != total ) : 
@@ -204,7 +204,7 @@ class Section:
 
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for itemIndex, item in enumerate(itemsForOctaveBalancing) : 
                 print ( itemIndex, item['pitches'][0], item['velocity'][0] ) 
                                           
@@ -216,7 +216,7 @@ class Section:
         while itemCnt < numItems : 
             item = itemsForOctaveBalancing[itemCnt] 
 
-            if ( 0 ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : 
                 print() 
                 print ( "ItemCnt : ", itemCnt, item )  
 
@@ -232,11 +232,11 @@ class Section:
                 continue
             else :                 
                 if ( currPitch > prevPitch ) : 
-                    if ( 0 ) : 
+                    if ( int(os.environ.get('DEBUG', 0)) ) : 
                         print ( "Here : 1: currPitch ", currPitch , " > " , prevPitch, " prevPitch " ) 
                     currStep = currPitch - prevPitch 
                     if ( cumulativeStep + currStep > 10 or currStep > 8 ) : 
-                        if ( 0 ) : 
+                        if ( int(os.environ.get('DEBUG', 0)) ) : 
                             print ( "Here : 1a cumSt + cstep > 10 or cstep >= 8, cumulativeStep : ", cumulativeStep, " currStep: ", currStep ) 
                         currItemToCheck = currPitch - 12
                         itemToCheck = itemCnt - 1 
@@ -251,12 +251,12 @@ class Section:
                                 itemToCheck -= 1
                         if ( not itemForBalancingFound ) :   # no item found for balancing. make this a rest note
                             itemsForOctaveBalancing[itemCnt]['velocity'][0] = 0 
-                            if ( 0 ) : 
+                            if ( int(os.environ.get('DEBUG', 0)) ) : 
                                 print ( "Here : 1b, no pitch found for balancing, itemCnt: ", itemCnt, "item: ", itemsForOctaveBalancing[itemCnt] ) 
                             itemCnt += 1 ;
                             continue
                         else : 
-                            if ( 0 ) : 
+                            if ( int(os.environ.get('DEBUG', 0)) ) : 
                                 print ( "Here : 1c Item Found for balancing: ", itemToCheck+1, "Before balancing: ", itemsForOctaveBalancing[itemToCheck+1], "diff: " ) 
                             cntUp = 0 
                             while ( cntUp < 2  ) : 
@@ -264,36 +264,36 @@ class Section:
                                 cntUp += 1
                                 if ( abs( itemsForOctaveBalancing[itemToCheck+1]['pitches'][0] - itemsForOctaveBalancing[itemToCheck]['pitches'][0] ) <= 10 ) : 
                                     break 
-                            if ( 0 ) : 
+                            if ( int(os.environ.get('DEBUG', 0)) ) : 
                                 print ( "Here : 1c Item Found for balancing: ", itemToCheck+1, "After balancing: ", itemsForOctaveBalancing[itemToCheck+1] ) 
 
 
                             if ( itemsForOctaveBalancing[itemToCheck+1]['pitches'][0] < minPitch ) :                                 
                                 itemsForOctaveBalancing[itemToCheck+1]['pitches'][0] += 12
-                                if ( 0 ) : 
+                                if ( int(os.environ.get('DEBUG', 0)) ) : 
                                     print ( "Here : 1d Item less than min pitch. Increase by octave: ", itemToCheck+1, "After Increasing by octave: ", itemsForOctaveBalancing[itemToCheck+1] ) 
 
                             cumulativeStep = itemsForOctaveBalancing[itemToCheck+1]['pitches'][0] - itemsForOctaveBalancing[0]['pitches'][0] 
                             prevPitch = itemsForOctaveBalancing[itemToCheck+1]['pitches'][0]
                             itemCnt = itemToCheck + 1 + 1 
-                            if ( 0 ) : 
+                            if ( int(os.environ.get('DEBUG', 0)) ) : 
                                 print ( "Next Item to check: ", itemCnt, "Cumulative STep: ", cumulativeStep ) 
                             continue
 
                     else : # for if ( cumulativeStep + currStep > 10 or currStep >= 8 ) : 
-                        if ( 0 ) : 
+                        if ( int(os.environ.get('DEBUG', 0)) ) : 
                             print ( "Here : 1e cumSt + cstep <= 10 and cstep < 8, cumulativeStep : ", cumulativeStep, " currStep: ", currStep ) 
                         cumulativeStep += currStep
                         prevPitch = currPitch
                         itemCnt += 1
                         continue
                 elif ( currPitch < prevPitch ) : 
-                    if ( 0 ) : 
+                    if ( int(os.environ.get('DEBUG', 0)) ) : 
                         print ( "Here : 2: currPitch ", currPitch , " < " , prevPitch, " prevPitch " ) 
 
                     currStep = currPitch - prevPitch 
                     if ( cumulativeStep + currStep < -10 or currStep < -8 ) : 
-                        if ( 0 ) : 
+                        if ( int(os.environ.get('DEBUG', 0)) ) : 
                             print ( "Here : 2a cumSt + cstep < -10 or cstep <= -8, cumulativeStep : ", cumulativeStep, " currStep: ", currStep ) 
 
                         currItemToCheck = currPitch + 12
@@ -309,13 +309,13 @@ class Section:
                                 currItemToCheck = prevItemToCheck + 12 
                                 itemToCheck -= 1
                         if ( not itemForBalancingFound ) :   # no item found for balancing. make this a rest note
-                            if ( 0 ) : 
+                            if ( int(os.environ.get('DEBUG', 0)) ) : 
                                 print ( "Here : 2b, no pitch found for balancing, itemCnt: ", itemCnt, "item: ", itemsForOctaveBalancing[itemCnt] ) 
                             itemsForOctaveBalancing[itemCnt]['velocity'][0] = 0 
                             itemCnt += 1 ;
                             continue
                         else : 
-                            if ( 0 ) : 
+                            if ( int(os.environ.get('DEBUG', 0)) ) : 
                                 print ( "Here : 2c Item Found for balancing: ", itemToCheck+1, "Before balancing: ", itemsForOctaveBalancing[itemToCheck+1] ) 
                             cntUp = 0 
                             while ( cntUp < 2  ) : 
@@ -324,22 +324,22 @@ class Section:
                                 if ( abs( itemsForOctaveBalancing[itemToCheck+1]['pitches'][0] - itemsForOctaveBalancing[itemToCheck]['pitches'][0] ) <= 10 ) : 
                                     break 
 
-                            if ( 0 ) : 
+                            if ( int(os.environ.get('DEBUG', 0)) ) : 
                                 print ( "Here : 2c Item Found for balancing: ", itemToCheck+1, "After balancing: ", itemsForOctaveBalancing[itemToCheck+1] ) 
 
                             if ( itemsForOctaveBalancing[itemToCheck+1]['pitches'][0] > maxPitch ) : 
                                 itemsForOctaveBalancing[itemToCheck+1]['pitches'][0] -= 12
-                                if ( 0 ) :
+                                if ( int(os.environ.get('DEBUG', 0)) ) :
                                     print ( "Here : 2d Item greater than man pitch. Decrease by octave: ", itemToCheck+1, "After Decreasing by octave: ", itemsForOctaveBalancing[itemToCheck+1] ) 
                             prevPitch = itemsForOctaveBalancing[itemToCheck+1]['pitches'][0]
                             cumulativeStep = itemsForOctaveBalancing[itemToCheck+1]['pitches'][0] - itemsForOctaveBalancing[0]['pitches'][0] 
                             itemCnt = itemToCheck + 1 + 1 
-                            if ( 0 ) : 
+                            if ( int(os.environ.get('DEBUG', 0)) ) : 
                                 print ( "Next Item to check: ", itemCnt, "Cumulative STep: ", cumulativeStep ) 
                             continue
 
                     else : # for if ( cumulativeStep + currStep < -10 or currStep <= -8 ) : 
-                        if ( 0 ) : 
+                        if ( int(os.environ.get('DEBUG', 0)) ) : 
                             print ( "Here : 2e cumSt + cstep >= 10 and cstep > -8, cumulativeStep : ", cumulativeStep, " currStep: ", currStep ) 
                         cumulativeStep += currStep
                         prevPitch = currPitch
@@ -347,7 +347,7 @@ class Section:
                         continue
                     
                 elif ( currPitch == prevPitch ) : 
-                    if ( 0 ) : 
+                    if ( int(os.environ.get('DEBUG', 0)) ) : 
                         print ( "Here : 2: currPitch ", currPitch , " == " , prevPitch, " prevPitch " ) 
 
                     prevPitch = currPitch
@@ -357,7 +357,7 @@ class Section:
 
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print() 
             for itemIndex, item in enumerate(itemsForOctaveBalancing) : 
                 if ( itemIndex > 0 ) : 
@@ -395,7 +395,7 @@ class Section:
                 self.mel5Data[phraseNum][chId].append ( newItem ) 
                  
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "DJ Mel 5 Data, Phrase 1" ) 
             for chId in range(len(self.mel5Data[phraseNum] )) :
                 print ( "\tChord Id: ", chId ) 
@@ -432,7 +432,7 @@ class Section:
     def fixOctaves ( self, itemsForOctaveBalancing ) :
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print("\nBefore" )         
             for itemIndex, item in enumerate(itemsForOctaveBalancing) : 
                 if ( itemIndex > 0 ) : 
@@ -456,7 +456,7 @@ class Section:
             checkForNote = checkForEighthNote
 
 
-        if ( 0 ) :
+        if ( int(os.environ.get('DEBUG', 0)) ) :
             print ( "FillNote: ", fillWithNote, "check note: ", checkForNote ) 
 
         numItems = len(itemsForOctaveBalancing) 
@@ -542,7 +542,7 @@ class Section:
 
                 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print("\nAfter" ) 
             for itemIndex, item in enumerate(smoothItems) : 
                 if ( itemIndex > 0 ) : 

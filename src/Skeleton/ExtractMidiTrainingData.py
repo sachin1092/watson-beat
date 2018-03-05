@@ -66,7 +66,7 @@ class MidiTrainingData :
         while ( chord != len(Chords) ) : 
             for item in self.Tracks[trackName][1] : 
              
-                if ( 0 ) : 
+                if ( int(os.environ.get('DEBUG', 0)) ) : 
                     print ( "Item: ", self.Tracks[trackName][1][item] , "Chord: ", chord, "End Chord Duration: ", currDuration ) 
     
                 # note extends to both chords. is in a chord boundary. Assume chord boundary is 1440. note starts at 1280 but ends at 1600.
@@ -153,7 +153,7 @@ class MidiTrainingData :
             #self.melody[chord].append ( self.melodyPL[numMelNotes] )
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print() 
             for chord in self.melody : 
                 print ( "Chord: ", chord ) 
@@ -166,7 +166,7 @@ class MidiTrainingData :
 
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for note in self.melodyPL : 
                 print ( self.melodyPL[note] ) 
             print() 
@@ -243,7 +243,7 @@ class MidiTrainingData :
 
 
                 #print ( "End Track", trackName ) 
-                if ( 0 and trackName == 'pad' ) : 
+                if ( int(os.environ.get('DEBUG', 0)) and trackName == 'pad' ) : 
                     break 
                 if ( 1 and trackName == 'melody' ) : 
                     break 

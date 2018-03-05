@@ -36,7 +36,7 @@ def CreateBassRhythms ( type, tse ) :
             item[rhyIndex] = str(item[rhyIndex]) + "Rest"
 
 
-    if ( 0 ) : 
+    if ( int(os.environ.get('DEBUG', 0)) ) : 
         print()
         for item in finalList : 
             print ( item ) 
@@ -45,7 +45,7 @@ def CreateBassRhythms ( type, tse ) :
 
 def recursiveFunction ( beat, adder ) : 
             
-    if ( 0 ) : 
+    if ( int(os.environ.get('DEBUG', 0)) ) : 
         print ( "I am here 2: beat: ", beat, "adder: ", adder, "stack: ", stack ) 
 
     if ( beat  >= numBeats ) : 
@@ -65,13 +65,13 @@ def recursiveFunction ( beat, adder ) :
             beat = resetBeat
 
         stack.append ( beat ) 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "I am here 1: beat: ", beat, "adder: ", adder, "stack: ", stack ) 
 
     #sys.exit(0) 
 
     for adder1 in beatAdderList : 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Beat: ", beat, "Adder1: ", adder1 ) 
 
         ret = recursiveFunction ( beat, adder1 ) 

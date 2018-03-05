@@ -129,7 +129,7 @@ class Chill :
         moodSpecificInfo = { 'fills':  True, 'numChords': random.choice([3,4]), 'selectedTempo': self.selectedTempo }
         self = InitializeSectionsHelper.InitializeSectionsComplex ( self, sections, moodSpecificInfo ) 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for secId in self.sections :         
                 print ( "Id", secId, "startMNum: ", self.sections[secId]['startMNum'], "endMNum: ", self.sections[secId]['endMNum'], 'Mel Id: ', self.sections[secId]['melId']  ) 
 
@@ -175,7 +175,7 @@ class Chill :
         patterns[0] = { 'eosStartBeat': eosStartBeat, 'eopStartBeat': eopStartBeat }
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "eop: ", eopStartBeat, "eos: ", eosStartBeat ) 
 
 

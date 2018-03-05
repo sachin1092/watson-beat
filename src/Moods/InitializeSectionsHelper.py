@@ -151,7 +151,7 @@ def InitializeSectionsComplex ( self, sections, moodSpecificInfo ) :
 
         startMNum = startMNum + numMeasuresInSection
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "SecId: ", secId, "Approx Num Seconds For Section: ", numSecondsForSection, "Actual num seconds per section: ", numMeasuresInSection * numSecondsPerMeasure, "Num Measures In Section: ", numMeasuresInSection, "Num Phrases: ", numPhrases  ) 
 
     #self.maxUniqCPs = 10 
@@ -247,32 +247,32 @@ def findBestFitForSectionTimeGivenBPM ( possibleSecondsForSection, possibleBPMs,
         for numSecondsForSection in possibleSecondsForSection : 
 
             numBeatsInSection = ( numSecondsForSection * bpm * 1.0 ) / 60.0 
-            if ( 0 ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : 
                 print ( "Actual Num Phrases: ", round ( numBeatsInSection / numBeatsInPL , 2 ) )
             numPhrasesFloor = int ( math.floor ( numBeatsInSection / numBeatsInPL ) )
-            if ( 0 ) :
+            if ( int(os.environ.get('DEBUG', 0)) ) :
                 print ( "Int Adjusted Num Phrases Floor: ", numPhrasesFloor ) 
             numMeasures = numPhrasesFloor * pl
             actualSecondsFloor = round ( secondsForOneBeat * numBeatsPerMeasure * numMeasures , 2 ) 
-            if ( 0 ) :
+            if ( int(os.environ.get('DEBUG', 0)) ) :
                 print ( "BPM: ", bpm, "Ini Seconds:", numSecondsForSection, "Actual Seconds: ", actualSecondsFloor )         
             diffFloor = abs ( numSecondsForSection - actualSecondsFloor ) 
 
             numPhrasesCeil = int ( math.ceil ( numBeatsInSection / numBeatsInPL ) )
-            if ( 0 ) :
+            if ( int(os.environ.get('DEBUG', 0)) ) :
                 print ( "Int Adjusted Num Phrases Ceil: ", numPhrasesCeil ) 
             numMeasures = numPhrasesCeil * pl
             actualSecondsCeil = round ( secondsForOneBeat * numBeatsPerMeasure * numMeasures , 2 ) 
-            if ( 0 ) :
+            if ( int(os.environ.get('DEBUG', 0)) ) :
                 print ( "BPM: ", bpm, "Ini Seconds:", numSecondsForSection, "Actual Seconds: ", actualSecondsCeil ) 
             diffCeil = abs ( numSecondsForSection - actualSecondsCeil ) 
 
             numPhrasesMid = numPhrasesFloor + 0.5 
-            if ( 0 ) :
+            if ( int(os.environ.get('DEBUG', 0)) ) :
                 print ( "Int Adjusted Num Phrases Mid: ", numPhrasesMid ) 
             numMeasures = numPhrasesMid * pl
             actualSecondsMid = round ( secondsForOneBeat * numBeatsPerMeasure * numMeasures , 2 ) 
-            if ( 0 ) :
+            if ( int(os.environ.get('DEBUG', 0)) ) :
                 print ( "BPM: ", bpm, "Ini Seconds:", numSecondsForSection, "Actual Seconds: ", actualSecondsMid ) 
             diffMid = abs ( numSecondsForSection - actualSecondsMid ) 
 
@@ -298,10 +298,10 @@ def findBestFitForSectionTimeGivenBPM ( possibleSecondsForSection, possibleBPMs,
                 chosenMidBPM = bpm            
 
 
-            if ( 0 ) :
+            if ( int(os.environ.get('DEBUG', 0)) ) :
                 print() 
 
-    if ( 0 ) :
+    if ( int(os.environ.get('DEBUG', 0)) ) :
         print ( "Chosen Phrases: ", chosenPhrases, "num seconds: ", chosenDuration, "given seconds: ", givenDuration ) 
         print ( "Chosen Mid Phrases: ", chosenMidPhrases, "num seconds: ", chosenMidDuration, "given seconds: ", givenMidDuration ) 
 
@@ -342,10 +342,10 @@ def findBestFitForSectionTimeAndBPM ( possibleSecondsForSection, possibleBPMs, t
                 elif ( numSecondsForSection % numSecondsPerMeasure == 0  ) : 
                     possibleOneMeasureFits.append ( (numSecondsForSection, bpm) )
                     
-                if ( 0 ) : 
+                if ( int(os.environ.get('DEBUG', 0)) ) : 
                     print ( "BPM: ", bpm, "Num seconds for section: ", numSecondsForSection, "Num Seconds Per Measure: ", numSecondsPerMeasure, "Num Seconds for One Phrase: ", numSecondsForOnePhrase, "Num Seconds for Half Phrase: ", numSecondsForHalfPhrase ) 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print()
             print ( "Possibel SecondsForSection: " , possibleSecondsForSection )
             print ( "Possible Full Phrase Fits: ", possibleFullPhraseFits ) 
@@ -366,7 +366,7 @@ def findBestFitForSectionTimeAndBPM ( possibleSecondsForSection, possibleBPMs, t
             possibleBPMs.append ( minBPM-1 )
             possibleBPMs.append ( maxBPM+1 )
 
-            if ( 0 )  : 
+            if ( int(os.environ.get('DEBUG', 0)) )  : 
                 print ( "No solution found" )  
                 print ( "possibleBPMs : ",  possibleBPMs  ) 
                 print ( "possibleSeconds : ",  possibleSecondsForSection  ) 
@@ -395,7 +395,7 @@ def findBestFitForSectionTimeAndBPM ( possibleSecondsForSection, possibleBPMs, t
     numSecondsForSection = numPhrases * numSecondsForOnePhrase
     numMeasuresInSection = numPhrases * pl    
 
-    if ( 0 ) : 
+    if ( int(os.environ.get('DEBUG', 0)) ) : 
         print ( "Possible Full Phrase Fits" ) 
         for item in possibleFullPhraseFits: 
             print ( "Num seconds for section: ", item[0], "BPM: ", item[1] ) 
@@ -406,7 +406,7 @@ def findBestFitForSectionTimeAndBPM ( possibleSecondsForSection, possibleBPMs, t
         for item in possibleHalfPhraseFits: 
             print ( "Num seconds for section: ", item[0], "BPM: ", item[1] ) 
     
-    if ( 0 ) :
+    if ( int(os.environ.get('DEBUG', 0)) ) :
         print ( "chosenItem: ", chosenItem ) 
 
 
@@ -515,7 +515,7 @@ def InitializeSections ( self, sections, moodSpecificInfo ) :
 
         startMNum = startMNum + numMeasuresInSection
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "SecId: ", secId, "Approx Num Seconds For Section: ", numSecondsForSection, "Actual num seconds per section: ", numMeasuresInSection * numSecondsPerMeasure, "Num Measures In Section: ", numMeasuresInSection, "Num Phrases: ", numPhrases  ) 
 
     self.numUniqCPs = idCnt 
@@ -593,7 +593,7 @@ def getNumChordsAndDurationForCP ( self, cpId, pl, tse, numChords ) :
         if ( currTicks == maxduration ) : 
             break 
 
-        if ( 0 ) :
+        if ( int(os.environ.get('DEBUG', 0)) ) :
             print ( "Try Number: ", tryNum, " Sequence not found: ",  "Num Chords: ", numChords, "Sequence: ", cpDurationSeq, "Max Duration: ", maxduration, "curr ticks: ", currTicks ) 
 
         tryNum += 1

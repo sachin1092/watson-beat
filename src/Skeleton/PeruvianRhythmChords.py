@@ -81,7 +81,7 @@ class PeruvianRhythmChords () :
                 
 
 
-        if ( 0 ) :
+        if ( int(os.environ.get('DEBUG', 0)) ) :
             print ("simple chordSplitDuration: ",  chordSplitDuration, "complex chordSplitDuration: ", complexChordSplitDuration ) 
             
         chordNotes = MusicTheory.AllChords[self.homeChord]  
@@ -89,7 +89,7 @@ class PeruvianRhythmChords () :
         self.maxPitch = ( MusicTheory.NotesToPitch[chordNotes[0]] + 24 ) + (self.octave*12)        
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "self.chordIds : ", self.chordIds )
             print ( "self.otherChords : ", self.otherChords )
             print ( "Home Pitch: ", ( MusicTheory.NotesToPitch[chordNotes[0]] + 0 ) + (self.octave*12), "Max Pitch: ", self.maxPitch ) 
@@ -142,7 +142,7 @@ class PeruvianRhythmChords () :
             cnt += 1
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for type in (rhythmTypes) : 
                 for item in rhythmTypes[type] : 
                     print ( item ) 
@@ -170,7 +170,7 @@ class PeruvianRhythmChords () :
 
             chordNotes = MusicTheory.AllChords[chord]              
 
-            if ( 0 )  :
+            if ( int(os.environ.get('DEBUG', 0)) )  :
                 print ( "Scale: ", scale, "Chord: ", chord, "Prev Note: ", prevNote ) 
 
             newItems = [] 
@@ -210,7 +210,7 @@ class PeruvianRhythmChords () :
                 # sort the event items based on the intermediate midi clk for this chord split
                 sortedEventItems = sorted ( eventItems, key=lambda val: val['midiClkStart'] ) 
 
-                if ( 0 ) : 
+                if ( int(os.environ.get('DEBUG', 0)) ) : 
                     print ( 'Type: ', type, 'Length of Items: ', len(items[chordSplit]) ) 
                     for item in items[chordSplit] : 
                         print ( 'Items: ', item ) 
@@ -240,7 +240,7 @@ class PeruvianRhythmChords () :
             self.trainedData[type][chordId] = newItems
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print() 
             print ( "Peruvian Rhythm Chord Type: ", type ) 
             for id in range ( numChords ) : 

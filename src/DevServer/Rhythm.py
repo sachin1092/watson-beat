@@ -88,11 +88,11 @@ class Rhythm :
 
             if ( currTicks == ticksForChord ) : 
                 break
-            if ( 0 ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : 
                 print ( "Try Number: ", tryNum, " Sequence not found: ", chordSeq )             
             tryNum += 1
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Sequence found in try number: ", tryNum, " Sequence : ", chordSeq ) 
         return ( chordSeq ) 
 
@@ -173,7 +173,7 @@ class Rhythm :
         template[self.fiveMeasureTicks]['firstChoice'] = random.choice ( template[self.fiveMeasureTicks]['choices'] ) 
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print() 
             print ( "Chord Durations: ", self.ChordDurations ) 
             for chord in self.ChordDurations : 
@@ -184,7 +184,7 @@ class Rhythm :
 
     def printRhythm ( self ) : 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print()
             print ( "Half Measure Chord Template: ", self.halfMeasureChordTemplate ) 
             print ( "Full Measure Chord Template: ", self.fullMeasureChordTemplate ) 
@@ -192,7 +192,7 @@ class Rhythm :
             print ( "Two Measure Chord Template: ", self.twoMeasureChordTemplate ) 
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for key in self.chordTemplate :
                 print ( key, self.chordTemplate[key]['choices'],  self.chordTemplate[key]['firstChoice'] ) 
                 print ( self.chordTemplate[key]['info'], ". Duration in ticks: ", key, "first choice: ", self.chordTemplate[key]['firstChoice'], "first choice ticks: ", self.chordTemplate[key]['firstChoice'] ) 

@@ -27,7 +27,7 @@ class Bass1 ( ) :
             self.Chords[0][chId] =  wbServerData[str(chId)] 
 
 
-        if ( 0 ) :
+        if ( int(os.environ.get('DEBUG', 0)) ) :
             print ( "Bass1 Data Phrase : 1" ) 
             for chId in self.Chords[0] : 
                 print ( "\tChord Id: ", chId ) 

@@ -65,7 +65,7 @@ class RhythmChords () :
             # DurationSplit = ChordDurationForLayers.createChordDurations ( self.duration ) 
             sys.exit(0) 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "self.chordIds : ", self.chordIds )
             print ( "self.otherChords : ", self.otherChords )
             print ( "Home Pitch: ", ( MusicTheory.NotesToPitch[chordNotes[0]] + 0 ) + (self.octave*12), "Max Pitch: ", self.maxPitch ) 
@@ -117,7 +117,7 @@ class RhythmChords () :
             newItems.append ( eventItems ) 
 
                 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for chordSplit in range(len(newItems)) : 
                 print ( "ChordSplit: ", chordSplit ) 
                 for item in newItems[chordSplit] :                                      
@@ -126,7 +126,7 @@ class RhythmChords () :
         self.populateAdditionalChordsOfSameDuration ( newItems ) 
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for id in self.trainedData : 
                 print() 
                 print ( "Chord: ", id ) 
@@ -159,7 +159,7 @@ class RhythmChords () :
             maxPitch = ( MusicTheory.NotesToPitch[chordNotes[0]] + 24 ) + (self.octave*12)        
 
 
-            if ( 0 )  :
+            if ( int(os.environ.get('DEBUG', 0)) )  :
                 print ( "Scale: ", scale, "Chord: ", chord, "Prev Note: ", prevNote ) 
 
             newItems = [] 
@@ -209,7 +209,7 @@ class RhythmChords () :
             self.trainedData[chordId] = newItems
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for id in range ( numChords ) : 
                 chord = self.chordIds[id] 
                 print() 

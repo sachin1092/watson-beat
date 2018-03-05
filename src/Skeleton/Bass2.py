@@ -72,7 +72,7 @@ class Bass2 ( ) :
             chosenData = { 'action': chosenAction, 'notes':  chosenNote , 'chord': self.homeChord, 'scale': self.homeScale, 'duration': [chosenDuration], 'octaveUp': octaveUp } 
             chosenItems.append ( chosenData )
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for i in range(len(chosenItems)) : 
                 print ( chosenItems[i]) 
             print() 

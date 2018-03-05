@@ -19,7 +19,7 @@ class Anthematic:
         self.rhythmSpeed = movement['rhythmSpeed']
         self.selectedTempo = selectedTempo
  
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Mood: Anthematic" ) 
             print ( 'Complexity: ', self.complexity ) 
 
@@ -123,7 +123,7 @@ class Anthematic:
 
         movement['sectionSettings'][0]['bassRhythmType'] = 'popRhythms' 
         
-        if ( 0 ) :
+        if ( int(os.environ.get('DEBUG', 0)) ) :
             print ( "All Options: " ) 
             for rhy in bassRhythmOptions : 
                 print ( rhy ) 
@@ -186,7 +186,7 @@ class Anthematic:
         patterns[0] = { 'eosStartBeat': eosStartBeat, 'eopStartBeat': eopStartBeat }
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "eop: ", eopStartBeat, "eos: ", eosStartBeat ) 
 
 

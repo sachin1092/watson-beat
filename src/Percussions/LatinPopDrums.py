@@ -8,7 +8,7 @@ from Skeleton import Constants
 
 def run ( BeatInfo, Patterns, tse, rhythmSpeed, pl, rhythms ) : 
 
-    if ( 0 ) : 
+    if ( int(os.environ.get('DEBUG', 0)) ) : 
         print ( "Latin Pop Drums" ) 
 
     numBeats = Constants.TSEs[tse]['num16thBeats'] 
@@ -26,7 +26,7 @@ def run ( BeatInfo, Patterns, tse, rhythmSpeed, pl, rhythms ) :
             else : 
                 velocity = 0 
                 
-            if ( 0 ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : 
                 print ( "Beat: ", beatNum, "Velocity: ", velocity ) 
                 
                                 
@@ -58,7 +58,7 @@ def run ( BeatInfo, Patterns, tse, rhythmSpeed, pl, rhythms ) :
                 
             cnt += 2
 
-            if ( 0 ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : 
                 print ( "Beat: ", beatNum, "Velocity: ", velocity, "eopStartBeat:", eopStartBeat ) 
                 
 
@@ -86,11 +86,11 @@ def run ( BeatInfo, Patterns, tse, rhythmSpeed, pl, rhythms ) :
                 
             cnt += 2
 
-            if ( 0 ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : 
                 print ( "Beat: ", beatNum, "Velocity: ", velocity, "eosStartBeat:", eosStartBeat ) 
                                 
 
-    if ( 0 ) : 
+    if ( int(os.environ.get('DEBUG', 0)) ) : 
         print()
         print ( "LatinPop Drum" ) 
         for patternNum in range(numPatterns) : 

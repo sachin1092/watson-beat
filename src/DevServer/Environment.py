@@ -93,7 +93,7 @@ class Bass1Environment ( Environment ) :
         #initialize chord progressions
         self.cpJumps = ChordProgressions.ChordProgressionJumps ( self.primaryScale ) 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             self.cpJumps.printChordProgressions() 
             sys.exit(0) 
 

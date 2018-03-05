@@ -375,7 +375,7 @@ def run ( training_pitch, training_starttime, training_endtime, Scale ) :
 
   creativity_genes = 2
 
-  if ( 0 ) :
+  if ( int(os.environ.get('DEBUG', 0)) ) :
     print ( "Creativity Genes: " , creativity_genes )
     print ( "Training Pitch: " , training_pitch ) ; 
     print ( "Training start Time: " , training_starttime ) 
@@ -397,7 +397,7 @@ def run ( training_pitch, training_starttime, training_endtime, Scale ) :
   # add creativity genes to the actual pitch neurons
   num_note_slices += creativity_genes ;
 
-  if ( 0 ) : 
+  if ( int(os.environ.get('DEBUG', 0)) ) : 
 
     print ( "\nAddtional Creativity Genes (and corresponding tie notes) added is: %d" %(creativity_genes)) 
     print ( "\nActual Note Slices After adjusting for rhythmn and Creativity Gene is: %d" %(num_note_slices) ) 
@@ -471,7 +471,7 @@ def run ( training_pitch, training_starttime, training_endtime, Scale ) :
         cnt += 1
       cnt += 1 ;
           
-  if ( 0 ) :
+  if ( int(os.environ.get('DEBUG', 0)) ) :
     for i in range( num_time_slices ) :
       val = [] 
       for j in range ( num_note_slices ) : 

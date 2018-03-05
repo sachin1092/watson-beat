@@ -7,7 +7,7 @@ import DrumConstants
 from Skeleton import Constants
 
 def run ( BeatInfo, Patterns, tse, rhythmSpeed, pl ) : 
-    if ( 0 ) : 
+    if ( int(os.environ.get('DEBUG', 0)) ) : 
         print ( "Snare Drums" ) 
 
     numBeats = Constants.TSEs[tse]['num16thBeats'] 
@@ -27,7 +27,7 @@ def run ( BeatInfo, Patterns, tse, rhythmSpeed, pl ) :
             if ( rhythmSpeed == 'slow' and (beatNum % 4) != 1 ) :  # only look at quarter notes
                 prob = -1
                 
-            if ( 0 ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : 
                 print ( "Beat: ", beatNum, "Prob: ", prob, "randVal: ", randval , "Velocity: ", velocity , beatNum%4 ) 
                 
             if ( not randval < int(prob) ) : 
@@ -76,7 +76,7 @@ def run ( BeatInfo, Patterns, tse, rhythmSpeed, pl ) :
                 SnareDrum['eosMeasure'][patternNum].append (data) 
             cnt += 2
 
-    if ( 0 ) : 
+    if ( int(os.environ.get('DEBUG', 0)) ) : 
         print ( "Snare Drum" ) 
         for patternNum in range(numPatterns) : 
             print ( "\tPattern Num: ", patternNum ) 

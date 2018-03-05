@@ -34,7 +34,7 @@ class Bass3 ( ) :
         self.Actions = BassActions.Actions['bass3'][wbLevers['complexity']]
         self.numActions = len(self.Actions)
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for rhy in self.rhythm : 
                 print ( self.rhythm[rhy] ) 
                 
@@ -49,7 +49,7 @@ class Bass3 ( ) :
         numMeasures     = self.duration // Constants.TSEs[self.tse]['oneMeasure'] 
         halfMeasureBeat = ( numBeats // 2 ) + 1 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "self.duration: :", self.duration, "Num Beats: ", numBeats, "Num Measures: ", numMeasures, "halfMeasurebeat: ", halfMeasureBeat, self.rhythm ) 
 
         if ( numMeasures == 0 ) : 
@@ -103,7 +103,7 @@ class Bass3 ( ) :
                 chosenData = { 'action': chosenAction, 'notes':  chosenNote , 'chord': self.homeChord, 'scale': self.homeScale, 'duration': [chosenDuration], 'octaveUp': octaveUp, 'velocity': velocity } 
                 chosenItems.append ( chosenData )
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for i in range(len(chosenItems)) : 
                 print ( chosenItems[i]) 
             print() 
@@ -136,7 +136,7 @@ def getRhyDurations ( rhyOption, tse ) :
     rhythm = collections.OrderedDict() 
 
     numBeats = Constants.TSEs[tse]['num16thBeats'] 
-    if ( 0 ) : 
+    if ( int(os.environ.get('DEBUG', 0)) ) : 
         print ( rhyOption ) 
 
     for beatIndex, beat in enumerate(rhyOption)  : 
@@ -182,7 +182,7 @@ def getRhyDurations ( rhyOption, tse ) :
 
             
             
-    if ( 0 ) : 
+    if ( int(os.environ.get('DEBUG', 0)) ) : 
         for beat in rhythm :
             print ( "Beat: ", beat,  "duration: ", rhythm[beat]['duration'] ,  "velocity: ", rhythm[beat]['velocity'] ) 
 

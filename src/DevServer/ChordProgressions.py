@@ -111,7 +111,7 @@ class ChordProgressionJumps :
                 #if ( currChord == 'CMajor' ) : 
                 #    print ( "Next Chord: ", nextChord, "next scale: ", nextScale, "CurrChord: ", currChord, "curr scale: ", currScale ) 
 
-                if ( 0 and (currChord == 'CMajor' or currChord == 'EMinor' ))  : 
+                if ( int(os.environ.get('DEBUG', 0)) and (currChord == 'CMajor' or currChord == 'EMinor' ))  : 
                     print ( "CurrChord: " , currChord, "CurrScale: ", currScale, "NextChord: ", nextChord, "NextScale: ", nextScale, "Penalty: ", totalPenalty ) 
                 #print ( totalPenalty ) 
                 if ( totalPenalty  not in penaltyFreqDict ) : 
@@ -160,8 +160,8 @@ class ChordProgressionJumps :
 
 
 
-        if ( 0 ) :
-            if ( 0 ) :
+        if ( int(os.environ.get('DEBUG', 0)) ) :
+            if ( int(os.environ.get('DEBUG', 0)) ) :
                 for i in range ( maxPenalty, minPenalty+1, 1 ) : 
                     print ( "Penalty: ", i, "Freq: ", penaltyFreqDict[i], "Pct: ", (penaltyFreqDict[i]*100)/cnt ) 
                     

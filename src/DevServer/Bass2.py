@@ -175,7 +175,7 @@ class Bass2 ( ) :
             chosenData = { 'action': chosenAction, 'notes':  chosenNote , 'chord': self.homeChord, 'scale': self.homeScale, 'duration': [chosenDuration], 'octaveUp': octaveUp } 
             chosenItems.append ( chosenData )
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for i in range(len(chosenItems)) : 
                 print ( chosenItems[i]) 
             print() 
@@ -285,6 +285,6 @@ class Bass2 ( ) :
             randExploitation = 0.80 
         else :
             randExploitation = 0.90 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "trIter: ", trIter, "Num Iterations: ", trainingIterations, "Ratio: ", ratioIter , "Rand Exploitation: ", randExploitation ) 
         return randExploitation

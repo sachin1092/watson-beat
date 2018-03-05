@@ -124,7 +124,7 @@ class Bass1 ( ) :
             
         
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "................................................................" ) 
             print ( "Start Assign Credit Or Blame for chosen Action: ", chosenAction ) 
 
@@ -133,10 +133,10 @@ class Bass1 ( ) :
         else :
             reward = -2.0
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Penalty: ", penalty, "cprogjumplow: ", self.Knobs['cprogJumpLow'], "cprogjumphigh: ", self.Knobs['cprogJumpHigh'], "Immediate Reward: ", reward ) 
         
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Immediate Reward: ", reward ) 
             print ( "End Assign Credit Or Blame for chosen Action: ", chosenAction ) 
             print ( ".............................................................." ) 
@@ -218,14 +218,14 @@ class Bass1 ( ) :
             randExploitation = 0.95 
         else :
             randExploitation = 0.97 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "trIter: ", trIter, "Num Iterations: ", trainingIterations, "Ratio: ", ratioIter , "Rand Exploitation: ", randExploitation ) 
         return randExploitation
 
     def getInitialChordForScale ( self, scale ) : 
         homeNote = MusicTheory.FirstMeasureNotes[scale][0]
         homeChord = scale 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             penalty = self.penaltyMin 
             print ( "Next Chord: ", homeChord, "Next Scale: ", scale, 'homeNote: ', homeNote  ) 
 
@@ -244,12 +244,12 @@ class Bass1 ( ) :
         homeChord    = self.env.homeChord
         cpComplexity = random.choice ( self.Knobs['CProgComplexity'] )  # choose one between obvious, unusual, and obscure
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print() 
             print ( "Home Scale: ", homeScale, "Current Chord: ", currChord, "cpComplexity: ", cpComplexity, "Action: ", action ) 
 
         allTuples =  self.env.cpJumps.ChordProgressions[currChord][cpComplexity][action] 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Action: ", action, "allTuples: ", allTuples ) 
 
         if ( len(allTuples) == 0 ) : 
@@ -264,13 +264,13 @@ class Bass1 ( ) :
                 nextChord  = random.choice ( allTuples.keys() ) 
                 nextScale  = self.env.cpJumps.ChordProgressions[currChord][cpComplexity][action][nextChord][1] 
 
-                if ( 0 ) :
+                if ( int(os.environ.get('DEBUG', 0)) ) :
                     print ( "Next Chord: ", nextChord ) 
                     print ( "Next Scale: ", nextScale ) 
                 
                 break 
             
-                if ( 0 ) :
+                if ( int(os.environ.get('DEBUG', 0)) ) :
                     print ( "i: ", i, "Home Scale: ", homeScale, "Current Chord: ", currChord, "cpComplexity: ", cpComplexity, "Action: ", action ) 
                     print ( "No Scale yet", "NextChord: ", nextChord, "Next Scale: ",nextScale ) 
 
@@ -287,7 +287,7 @@ class Bass1 ( ) :
                 print() 
                 sys.exit(0) 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Next Chord: ", nextChord, "Next Scale: ", nextScale, 'homeNote: ', nextHomeNote, "Penalty: ", penalty  ) 
             print() 
 
@@ -323,7 +323,7 @@ class Bass1 ( ) :
             chosenItems = [] 
             self.scalesInUse = {}
 
-            if ( 0 ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : 
                 print( "--------------------------------------------------------------------------------" ) 
                 print ( "Iteration Num: ", trIter ) 
 
@@ -333,7 +333,7 @@ class Bass1 ( ) :
                 
                 chosenData = {} 
                 chosenDuration = CPTicks[cpIndex]                
-                if ( 0 ) : 
+                if ( int(os.environ.get('DEBUG', 0)) ) : 
                     print() 
 
                 if ( cpIndex == 0 ) :  # this is the first chord to be played, so choose 'PLAY_CHORD_PROGRESSION_TONE_FOR_PRIMARY_KEY'
@@ -344,7 +344,7 @@ class Bass1 ( ) :
                     numInitialActions += 1
                     chosenData = { 'action': chosenAction, 'notes': [chosenHomeNote], 'chord': chosenChord, 'scale': chosenScale, 'duration': [chosenDuration], 'penalty': penalty } 
                     self.scalesInUse[chosenScale] = True                    
-                    if ( 0 ) : 
+                    if ( int(os.environ.get('DEBUG', 0)) ) : 
                         print ( "Chord: ", cpIndex+1 , "Action type: ", typeOfAction, "Action: ", chosenAction, chosenChord ) 
                     rewardForIteration += chosenReward
                     #print ( "Chord Id: ", cpIndex, "Chosen Reward: ", chosenReward, "Chosen Action: ", chosenData['action'], "type: ", typeOfAction ) 
@@ -353,7 +353,7 @@ class Bass1 ( ) :
                     # figure out if we want to explore or exploit
                     randForExploration = random.random ()              
                     exploitationThreshold = self.getRandThreshold ( trIter, trainingIterations )
-                    if ( 0 ) : 
+                    if ( int(os.environ.get('DEBUG', 0)) ) : 
                         ratioIter = round ( float ( trIter * 1.0  / trainingIterations * 1.0 ), 2 )         
                         print ( "trIter: ", trIter, "Num Iterations: ", trainingIterations, "Ratio: ", ratioIter , "Rand Exploitation: ", exploitationThreshold, "Rand Exploration: ", randForExploration ) 
 
@@ -365,7 +365,7 @@ class Bass1 ( ) :
                         chosenAction = self.Actions[ random.randint(0, totalActions-1) ]
                         chosenHomeNote, chosenChord, chosenScale, penalty = self.getNextChordToBePlayed  ( chosenAction ) 
                         chosenData = { 'action': chosenAction, 'notes': [ chosenHomeNote ], 'chord': chosenChord, 'scale': chosenScale, 'duration': [chosenDuration], 'penalty': penalty } 
-                        if ( 0 ) : 
+                        if ( int(os.environ.get('DEBUG', 0)) ) : 
                             print ( "Chord: ", cpIndex+1 , "Action type: ", typeOfAction, "Action: ", chosenAction, chosenChord ) 
 
 
@@ -386,7 +386,7 @@ class Bass1 ( ) :
                             self.getNextState ( currentAction, { 'chord': currentChord, 'scale': currentScale, 'penalty': penalty } ) 
                             q = self.qLearn.predictQFactor ( self.nextState, self.ReverseActions[currentAction] ) 
        
-                            if ( 0 ) : 
+                            if ( int(os.environ.get('DEBUG', 0)) ) : 
                                 print ( "Chord: ", cpIndex+1 , "Action type: ", typeOfAction, "Action: ", currentAction, currentChord ) 
                                 print ( "i: ", action,  "Notes: ", currentHomeNote, "currentChord: ", currentChord, "currentScale: ", currentScale, "Duration: ", currentDuration, "Action: ", currentAction,  "Next State: ", self.nextState.stats, "penalty: ", penalty  )     
                                 print ( "i: ", action,  "q:", q, "qMax: ", qMax ) 
@@ -396,7 +396,7 @@ class Bass1 ( ) :
                                 initial = False                                
                                 chosenData = { 'action': currentAction, 'notes': [currentHomeNote], 'chord': currentChord, 'scale': currentScale, 'duration': [currentDuration],  'penalty': penalty } 
                         #end for action in range(self.numActions):
-                        if ( 0 ) : 
+                        if ( int(os.environ.get('DEBUG', 0)) ) : 
                             print ( "Chord: ", cpIndex+1 , "Action type: ", typeOfAction, "Action: ", chosenData['action'], chosenData['chord'] ) 
 
                     #end exploration or exploitation
@@ -424,10 +424,10 @@ class Bass1 ( ) :
 
         #End for loop trIter
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for i in range(len(chosenItems)) : 
                 print ( "Chosen Item: ", chosenItems[i]) 
-            if ( 0 ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : 
                 print ( "Num Exploratory : ", numExploratoryActions ) 
                 print ( "Num Exploitation: ", numExploitationActions ) 
                 print ( "Num Initial Actions: ", numInitialActions ) 
@@ -441,7 +441,7 @@ class Bass1 ( ) :
             self.Chords[0][chId].append( self.trainedData[iter][chId] ) 
                                                           
         
-        if ( 0 ) :
+        if ( int(os.environ.get('DEBUG', 0)) ) :
             print ( "Bass1 Data Phrase : 1" ) 
             for chId in self.Chords[0] : 
                 print ( "\tChord Id: ", chId ) 

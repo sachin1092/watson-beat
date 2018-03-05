@@ -74,7 +74,7 @@ class Midi :
                 if ( random.randint( 1, 100 ) > 50 ) : 
                     complexChordSplits[i] = True 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Phrase: ", phrase, "melId: ", melId, "layer: ", layer, "complexChordSplits: ", complexChordSplits ) 
 
         for chordSplit in range(numChordSplits) : 
@@ -110,7 +110,7 @@ class Midi :
                 else : 
                     melMidiData[rep][mnum] = self.uniqLayers[melId]['mel5']['main'][mnum]
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for rep in range(repCount) : 
                 print ( "Phrase: ", rep ) 
                 for mnum in melMidiData[rep] : 
@@ -146,7 +146,7 @@ class Midi :
 
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             if ( layer == 'drumsCymbalSwell' ) :                
                 for rep in range(repCount) : 
                     print ( "Phrase: ", rep ) 
@@ -177,7 +177,7 @@ class Midi :
                 eopChoice = random.randint ( 1, len(self.uniqLayers[melId][layer]['eop'])-1 ) 
                 midiData[phrase][pl-1] = self.uniqLayers[melId][layer]['eop'][eopChoice]  # end of phrase fill 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for rep in range(repCount) : 
                 print ( "Phrase: ", rep ) 
                 for mnum in midiData[rep] : 

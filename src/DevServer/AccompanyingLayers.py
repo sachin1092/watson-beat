@@ -105,7 +105,7 @@ class AccompanyingLayers :
         self.chordSplitDuration[durationOneMeasure*3] = chordSplitDuration + chordSplitDuration + chordSplitDuration
         self.chordSplitDuration[durationOneMeasure*4] = chordSplitDuration + chordSplitDuration + chordSplitDuration + chordSplitDuration 
         
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( halfMeasure ) 
             print ( "chordSplitDuration: ", chordSplitDuration ) 
             print ( "One Measure: ", durationOneMeasure, self.chordSplitDuration[durationOneMeasure] ) 
@@ -129,7 +129,7 @@ class AccompanyingLayers :
                         else :  
                             desc = strClass + "_" + chordDataForLayer[layer][strClass][instId][0]['desc']  # for lostrings, midstrings and histrings
                         TrainedData[desc] = chordDataForLayer[layer][strClass][instId] 
-                        if ( 0 ) : 
+                        if ( int(os.environ.get('DEBUG', 0)) ) : 
                             print ( desc, strClass )                        
                             for item in chordDataForLayer[layer][strClass][instId] : 
                                 print ( item ) 
@@ -156,7 +156,7 @@ class AccompanyingLayers :
                         chordDataForLayer[layer].update (  pMel.run() )
 
                     elif ( layer == 'piano1' or layer == 'peruvianRhythmChords' ) : 
-                        if ( 0 ) : 
+                        if ( int(os.environ.get('DEBUG', 0)) ) : 
                             print ( "Layer : ", layer, self.chordSplitDuration[self.duration[key]], self.duration[key] )
 
                         if ( layer == 'piano1' ) : 
@@ -169,7 +169,7 @@ class AccompanyingLayers :
                         chordDataForLayer[layer]['simple'].update  ( simple )   
                         chordDataForLayer[layer]['complex'].update ( complex )   
 
-                        if ( 0 ) : 
+                        if ( int(os.environ.get('DEBUG', 0)) ) : 
                             for chId in chordDataForLayer[layer]['simple'] :
                                 print ( "ChordId: ", chId ) 
                                 for item in chordDataForLayer[layer]['simple'][chId] :
@@ -200,7 +200,7 @@ class AccompanyingLayers :
                         for item in  chordDataForLayer[layer][chordId] : 
                             TrainedData[layer][chordId] += item 
 
-        if ( 0 ) :
+        if ( int(os.environ.get('DEBUG', 0)) ) :
             for layer in TrainedData :
                 if ( layer == '1piano1' or layer == 'peruvianRhythmChords' or layer == '1rhythmChords' )  :  
                     print ( "Layer: " , layer ) 

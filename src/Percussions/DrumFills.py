@@ -76,7 +76,7 @@ class DrumFill:
         self.numBeats = numBeats # for 4/4, end of section fill the max beats is from 8 to 16. 1/2 a measure to 1 measure. for
         self.startFillBeat = startBeat
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Tse: ", tse, "StartBeat: ", self.startFillBeat, "NumBeats: ", self.numBeats, "Complexity: ", complexity, "RhythmSpeed: ", rhythmSpeed, "MaxMovementPoints: ", maxMovementPoints, numBeatsForGesturePosition ) 
             for i in range( maxMovementPoints)  : 
                 print ( self.gesturePosition[i] ) 
@@ -163,7 +163,7 @@ class DrumFill:
                 currBeatNum += 1
 
 
-        if ( 0 ) :
+        if ( int(os.environ.get('DEBUG', 0)) ) :
             print( "Fill Beats") 
             for beat in fillMeasure : 
                 print ( beat, fillMeasure[beat] )  

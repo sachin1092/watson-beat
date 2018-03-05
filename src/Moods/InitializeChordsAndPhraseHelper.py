@@ -163,20 +163,20 @@ def getChordSettingsForSection ( self, secId, energy, direction, slope, uniqCPId
     similarId = self.sections[secId]['similarId']
     
 
-    if ( 0 ) : 
+    if ( int(os.environ.get('DEBUG', 0)) ) : 
         print ( "Chord Seq: ", chordSeq ) 
 
     while ( currTick < totalTicks ) : 
 
         for chordTick in chordSeq : 
 
-            if  ( 0 ) : 
+            if  ( int(os.environ.get('DEBUG', 0)) ) : 
                 print ( "Sec Id: ", secId, "chordTick: ", chordTick, "currtick: ", currTick, "totalTicks: ", totalTicks, "phraseId: ", phId, "chId: ", chId, "numChordsInPhrase: ", numChordsInPhrase    ) 
 
 
             if ( currTick >= totalTicks ) : 
                 firstChordInPhrase = numChordsInPhrase * ( phId) 
-                if ( 0 ) : 
+                if ( int(os.environ.get('DEBUG', 0)) ) : 
                     print ( "I am here 1" ) 
                     print ( "chId: ", chId, "phId: ", phId, "firtsChordInPhrase: ", firstChordInPhrase, "num chords: " , numChordsInPhrase ) 
 
@@ -198,7 +198,7 @@ def getChordSettingsForSection ( self, secId, energy, direction, slope, uniqCPId
                 currTick += chordTick
                 chId += 1
                 firstChordInPhrase = numChordsInPhrase * ( phId) 
-                if ( 0 ) : 
+                if ( int(os.environ.get('DEBUG', 0)) ) : 
                     print ( "I am here 2" ) 
                     print ( "chId: ", chId, "phId: ", phId, "firtsChordInPhrase: ", firstChordInPhrase, "num chords: " , numChordsInPhrase ) 
 
@@ -223,7 +223,7 @@ def getChordSettingsForSection ( self, secId, energy, direction, slope, uniqCPId
                 currTick += diff 
                 chId += 1                    
                 firstChordInPhrase = numChordsInPhrase * ( phId) 
-                if ( 0 ) : 
+                if ( int(os.environ.get('DEBUG', 0)) ) : 
                     print ( "I am here 3" ) 
                     print ( "chId: ", chId, "phId: ", phId, "firtsChordInPhrase: ", firstChordInPhrase, "num chords: " , numChordsInPhrase ) 
 
@@ -243,7 +243,7 @@ def getChordSettingsForSection ( self, secId, energy, direction, slope, uniqCPId
                     currNumLayers = minLayers
                 elif ( currNumLayers > maxLayers ) : 
                     currNumLayers = maxLayers
-                if ( 0 ) : 
+                if ( int(os.environ.get('DEBUG', 0)) ) : 
                     print ("Next Chord." , "Section id: ", secId, "Energy: ", energy, "Direction: ", direction, "slope: ", slope, "Slope Multiplier: ", multiplier, "AddLayers: ", addLayers, "Final Adder: ", adder, "curr density: ", currNumLayers  ) 
 
                 layers, density = getLayersBasedOnEnergy ( self, energy, currNumLayers, layers, mustHaveLayers, mustNotHaveLayers ) 
@@ -256,7 +256,7 @@ def getChordSettingsForSection ( self, secId, energy, direction, slope, uniqCPId
         elif ( currNumLayers > maxLayers ) : 
             currNumLayers = maxLayers
         layers, density = getLayersBasedOnEnergy ( self, energy, currNumLayers, layers, mustHaveLayers, mustNotHaveLayers ) 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ("Next Phrase." , "Section id: ", secId, "Energy: ", energy, "Direction: ", direction, "slope: ", slope, "Slope Multiplier: ", multiplier, "AddLayers: ", addLayers, "Final Adder: ", adder, "curr density: ", currNumLayers  ) 
 
         phLayers += layers   # contains all the layers for the phrase

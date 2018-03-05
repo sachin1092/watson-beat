@@ -47,7 +47,7 @@ class Piano1 () :
 
     def run ( self, chordSplitDuration ) : 
          
-        if  ( 0 ) :
+        if  ( int(os.environ.get('DEBUG', 0)) ) :
             print ( "old chordSplitDuration: ", chordSplitDuration ) 
             
         if ( len( chordSplitDuration ) == 0 ) : # accompanying layer did not pass any chord duration. so create one
@@ -75,7 +75,7 @@ class Piano1 () :
         self.maxPitch = ( MusicTheory.NotesToPitch[chordNotes[0]] + 24 ) + (self.octave*12)        
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "self.chordIds : ", self.chordIds )
             print ( "self.otherChords : ", self.otherChords )
             print ( "Home Pitch: ", ( MusicTheory.NotesToPitch[chordNotes[0]] + 0 ) + (self.octave*12), "Max Pitch: ", self.maxPitch ) 
@@ -119,7 +119,7 @@ class Piano1 () :
             newItems.append ( eventItems ) 
 
                 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for chordSplit in range(len(newItems)) : 
                 print ( "ChordSplit: ", chordSplit ) 
                 for item in newItems[chordSplit] :                                      
@@ -132,7 +132,7 @@ class Piano1 () :
         self.populateAdditionalChordsOfSameDuration ( newItems, 'complex' ) 
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for type in self.trainedData : 
                 print() 
                 print ( "Piano type: ", type ) 
@@ -162,7 +162,7 @@ class Piano1 () :
 
             chordNotes = MusicTheory.AllChords[chord]              
 
-            if ( 0 )  :
+            if ( int(os.environ.get('DEBUG', 0)) )  :
                 print ( "Scale: ", scale, "Chord: ", chord, "Prev Note: ", prevNote ) 
 
             newItems = [] 
@@ -208,7 +208,7 @@ class Piano1 () :
                 # sort the event items based on the intermediate midi clk for this chord split
                 sortedEventItems = sorted ( eventItems, key=lambda val: val['midiClkStart'] ) 
 
-                if ( 0 ) : 
+                if ( int(os.environ.get('DEBUG', 0)) ) : 
                     print ( 'Type: ', type, 'Length of Items: ', len(items[chordSplit]) ) 
                     for item in items[chordSplit] : 
                         print ( 'Items: ', item ) 
@@ -238,7 +238,7 @@ class Piano1 () :
             self.trainedData[type][chordId] = newItems
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print() 
             print ( "Piano Type: ", type ) 
             for id in range ( numChords ) : 
@@ -255,7 +255,7 @@ class Piano1 () :
 
     def getSimpleChordRhythms ( self, newItems ) : 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Complex Items" ) 
             for chordSplit in range(len(newItems)) : 
                 print ( "ChordSplit: ", chordSplit ) 
@@ -282,7 +282,7 @@ class Piano1 () :
                         
             simpleItems.append ( eventItems ) 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Simple Items" ) 
             for chordSplit in range(len(simpleItems)) : 
                 print ( "ChordSplit: ", chordSplit ) 

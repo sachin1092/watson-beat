@@ -70,7 +70,7 @@ class Section:
 
     def run ( self ) :         
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             for lyr in self.layers : 
                 print ( "Layer: ", lyr ) 
                 for num in range(len(self.layers[lyr] ) ) : 
@@ -111,11 +111,11 @@ class Section:
         for chId in range(len(wbServerMelData)) : 
             self.mel5Data[phraseNum][chId] = wbServerMelData[str(chId)] 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print() 
             print ( "-------------------------------- DJ MEL Starts --------------------------------------" ) 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "DJ Mel 5 Data, Phrase 1" ) 
             for chId in range(len(self.mel5Data[phraseNum] )) :
                 print ( "\tChord Id: ", chId ) 
@@ -124,7 +124,7 @@ class Section:
                 print() 
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print() 
             print ( "-------------------------------- DJ MEL Ends --------------------------------------" ) 
 
@@ -162,7 +162,7 @@ class Section:
             rhythm = self.rhy.chordTemplate[duration]['firstChoice']
             rhythm = [ Constants.NoteDurations[key]['ticks'] for key in rhythm ] 
 
-            if ( 0 ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : 
                 print ( "Initializing Chord: ", chordId, " Scale: ", scale, "Chord: ", chord , "Duration: ", duration, "Rhythm: ", rhythm  ) 
             
             bass2 = Bass2.Bass2 ( self.wbLevers,  scale, chord, duration, rhythm ) 
@@ -170,11 +170,11 @@ class Section:
             
             self.bass2Data[phraseNum][chordId] = bass2TrainedData 
 
-            if ( 0 ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : 
                 for key in  bass2TrainedData : 
                     print ( key ) 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Bass 2 Data, Phrase 1" ) 
             for chId in range(len(self.bass2Data[phraseNum] )) :
                 print ( "\tChord Id: ", chId ) 
@@ -226,7 +226,7 @@ class Section:
         self.bassRhythms[1] = { i : {} for i in rhythmOptions[rhyOption2] }
 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Bass Rhythm Option 1: " , rhythmOptions[rhyOption1], rhy1 ) 
             print ( "Bass Rhythm Option 2: " , rhythmOptions[rhyOption2], rhy2 ) 
 
@@ -243,7 +243,7 @@ class Section:
             duration = self.bass1Obj.Chords[phraseNum][chordId][0]['duration'][0]
 
 
-            if ( 0 ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : 
                 print() 
                 print ( "Initializing Chord: ", chordId, " Scale: ", scale, "Chord: ", chord , "Duration: ", duration, "Rhythm Options: ", rhythmOptions, "chosen rhy option: ", bassRhy  ) 
 
@@ -256,11 +256,11 @@ class Section:
             brassRhyTrainedData = brassRhy.run()             
             self.brassRhyData[phraseNum][chordId] = brassRhyTrainedData 
 
-            if ( 0 ) : 
+            if ( int(os.environ.get('DEBUG', 0)) ) : 
                 for key in  bass3TrainedData : 
                     print ( key ) 
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Bass 3 Data, Phrase 1" ) 
             for chId in range(len(self.bass3Data[phraseNum] )) :
                 print ( "\tChord Id: ", chId ) 

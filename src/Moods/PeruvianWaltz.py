@@ -17,7 +17,7 @@ class PeruvianWaltz :
         self.complexity = movement['complexity'] 
         self.durationInSecs = movement['duration'] 
         self.rhythmSpeed = movement['rhythmSpeed'] 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Mood: Peruvian Waltz" ) 
             print ( 'Complexity: ', self.complexity ) 
 
@@ -188,7 +188,7 @@ class PeruvianWaltz :
         patterns = collections.OrderedDict() 
         patterns[0] = { 'eosStartBeat': eosStartBeat, 'eopStartBeat': eopStartBeat }
 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "eop: ", eopStartBeat, "eos: ", eosStartBeat ) 
 
         beatArray = [ i for i in range ( 1, numBeats+1, 1 ) ]

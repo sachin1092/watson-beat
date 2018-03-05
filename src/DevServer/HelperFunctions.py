@@ -137,7 +137,7 @@ def createMidiEvents ( movement, uniqLayers, layerTemplateForSection ) :
             WriteFinalMidiFileSequence ( fout, foutName ) 
 
 
-    if ( 0 ) : 
+    if ( int(os.environ.get('DEBUG', 0)) ) : 
         for layer in MidiEvents : 
             if ( layer == 'mel5' ) : 
                 continue

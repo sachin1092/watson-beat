@@ -59,7 +59,7 @@ class QLearning:
             self.cmac.setFloatInputs ( i, 1.0 * val ) 
             
         self.cmac.setIntInputs ( 0, a ) 
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "PopulateCMACs: FloatInputs: ", self.cmac.floatInputs, "InttInputs: ", self.cmac.intInputs ) 
         return 
 
@@ -88,7 +88,7 @@ class QLearning:
         self.T.setNextState (self.nextState ) 
         self.T.setNextAction (self.nextAction ) 
         
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Update RL", "next reward: ", self.nextReward, "current Reward: ", self.currentReward ) 
         self.updateSarsa ( self.T ) 
         
@@ -106,19 +106,19 @@ class QLearning:
         nextAction = T.getNextAction() 
         
         #Get Q( s', a' )
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Populate CMACs for nextState: " ) 
         self.populateCMACs ( nextState, nextAction ) 
         nextQ = self.cmac.predict() 
 
         #Get Q( s, a )
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "Populate CMACs for currentState: " ) 
         self.populateCMACs ( currentState, currentAction ) 
         oldQ = self.cmac.predict() 
         
         self.cmac.update ( reward + self.gamma * nextQ )
-        if ( 0 ) : 
+        if ( int(os.environ.get('DEBUG', 0)) ) : 
             print ( "OldQ: ", oldQ, "nextQ: ", nextQ, "reward + self.gamma * nextQ: ", reward + self.gamma * nextQ ) 
 
         return 

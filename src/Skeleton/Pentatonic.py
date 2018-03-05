@@ -69,7 +69,7 @@ class PMelody ( ) :
             currentOctave = chosenData['pitches'][-1]//12
             prevNote = chosenNote[-1]
 
-            if ( 0 ) :
+            if ( int(os.environ.get('DEBUG', 0)) ) :
                 print ( "Used Ticks: ", usedTicks, "remaining duration: ", remainingTicks, "Total Ticks: ", self.duration )
 
         if ( 1 ) : 
